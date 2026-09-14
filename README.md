@@ -429,7 +429,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <div align="center">
 
-**Built with passion by [Sai Darshan (BitCrush777)](https://github.com/BitCrush777)**
+**Built with passion by [Saidarshan.K (BitCrush777)](https://github.com/BitCrush777)**
 
 *Star ⭐ this repository if JARVIS makes your desktop experience feel like the future!*
 

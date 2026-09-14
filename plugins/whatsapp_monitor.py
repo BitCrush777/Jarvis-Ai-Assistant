@@ -44,16 +44,31 @@ _monitor_thread = None
 _monitoring_active = False
 _replied_notification_ids = set()
 
+def _get_user_name():
+    try:
+        import json, os
+        cfg_path = os.path.join(os.path.dirname(__file__), "..", "config", "api_keys.json")
+        if os.path.exists(cfg_path):
+            with open(cfg_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                name = data.get("user_name")
+                if name and name != "User":
+                    return name
+    except Exception:
+        pass
+    return "Saidarshan.K"
+
 def _generate_dynamic_reply(sender, message):
+    user_name = _get_user_name()
     try:
         from core.llm_client import call_llm_text
 
         prompt = (
-            f"You are Jarvis, Deepak's personal AI assistant. Deepak is currently busy working. "
+            f"You are Jarvis, {user_name}'s personal AI assistant. {user_name} is currently busy working. "
             f"You received a WhatsApp message from '{sender}' which says: '{message}'. "
-            f"Write a short, natural, and polite reply on Deepak's behalf. "
+            f"Write a short, natural, and polite reply on {user_name}'s behalf. "
             f"Acknowledge what they said. If it is an important update (like a meeting, emergency, or request), "
-            f"tell them you will convey it to Deepak immediately. "
+            f"tell them you will convey it to {user_name} immediately. "
             f"Keep it under 2 sentences. Reply directly as Jarvis."
         )
 
@@ -61,7 +76,7 @@ def _generate_dynamic_reply(sender, message):
         return reply.strip()
     except Exception as e:
         print(f"[WhatsApp Monitor] AI generation failed: {e}")
-        return f"Hello, I am Jarvis. Deepak is currently busy, but I will convey your message to him."
+        return f"Hello, I am Jarvis. {user_name} is currently busy, but I will convey your message to him."
 
 async def _get_whatsapp_notifications():
     if not _WINSDK_AVAILABLE:
@@ -143,7 +158,8 @@ def _whatsapp_monitor_loop(player):
                         except Exception as e:
                             print(f"[WhatsApp Monitor] Could not minimize window: {e}")
                         
-                        # 4. Notify Deepak via JARVIS UI
+                        # 4. Notify user via JARVIS UI
+                        user_name = _get_user_name()
                         alert_msg = f"Sir, '{sender}' sent you a message: '{message}'. I replied with: '{reply_text}'"
                         if player:
                             player.write_log(f"JARVIS: 📨 {alert_msg}")
@@ -157,7 +173,7 @@ def _whatsapp_monitor_loop(player):
                                     f"Sender: {sender}\n"
                                     f"Their message: {message}\n"
                                     f"Your reply: {reply_text}\n\n"
-                                    f"Keep this in your memory. DO NOT speak or reply to this alert out loud unless Deepak explicitly asks if you sent any messages."
+                                    f"Keep this in your memory. DO NOT speak or reply to this alert out loud unless {user_name} explicitly asks if you sent any messages."
                                 )
                                 try:
                                     player.on_text_command(internal_memory)

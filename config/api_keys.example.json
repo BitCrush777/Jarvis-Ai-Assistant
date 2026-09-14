@@ -4,7 +4,7 @@
     "llm_model": "nvidia/nemotron-3-super-120b-a12b",
     "llm_url": "https://integrate.api.nvidia.com/v1",
     "assistant_name": "JARVIS",
-    "user_name": "User",
+    "user_name": "Saidarshan.K",
     "tts_engine": "edgetts",
     "tts_voice": "en-US-GuyNeural",
     "whisper_model": "base",

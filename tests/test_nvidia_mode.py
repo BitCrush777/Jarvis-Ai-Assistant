@@ -158,12 +158,12 @@ class TestNvidiaMode(unittest.TestCase):
 
     def test_check_fast_path(self):
         live = main.JarvisLive(MagicMock())
-        live._user_name = "Saidarshan"
+        live._user_name = "Saidarshan.K"
         live._asst_name = "JARVIS"
 
         # User identity
-        self.assertEqual(live._check_fast_path("What is my name?"), "Your name is Saidarshan, Sir.")
-        self.assertEqual(live._check_fast_path("who am i"), "Your name is Saidarshan, Sir.")
+        self.assertEqual(live._check_fast_path("What is my name?"), "Your name is Saidarshan.K, Sir.")
+        self.assertEqual(live._check_fast_path("who am i"), "Your name is Saidarshan.K, Sir.")
 
         # Assistant identity
         self.assertEqual(live._check_fast_path("what is your name"), "I am JARVIS, your desktop assistant, Sir.")
