@@ -1,0 +1,72 @@
+{
+    "nvidia_api_key": "YOUR_NVIDIA_API_KEY_HERE",
+    "llm_provider": "nvidia",
+    "llm_model": "nvidia/nemotron-3-super-120b-a12b",
+    "llm_url": "https://integrate.api.nvidia.com/v1",
+    "assistant_name": "JARVIS",
+    "user_name": "User",
+    "tts_engine": "edgetts",
+    "tts_voice": "en-US-GuyNeural",
+    "whisper_model": "base",
+    "camera_index": 0,
+    "camera_mirror": true,
+    "camera_resolution": "auto",
+    "processing_resolution": [
+        1280,
+        720
+    ],
+    "tracking_resolution": "auto",
+    "target_fps": 30,
+    "hand_detection_confidence": 0.5,
+    "hand_tracking_confidence": 0.5,
+    "max_hands": 2,
+    "hand_tracking_enabled": true,
+    "vision_debug_mode": false,
+    "os_system": "windows",
+    "microphone_device": "auto",
+    "vad_sensitivity": 2.5,
+    "min_speech_duration": 0.25,
+    "silence_duration": 0.35,
+    "plugins_enabled": {
+        "whatsapp_monitor": true,
+        "whatsapp_voice_bridge": true,
+        "ky_ufo_drone": false
+    },
+    "ui_color": "#00d4ff",
+    "gesture_control": {
+        "enabled": true,
+        "confidence_threshold": 0.65,
+        "stability_frames": 4,
+        "cooldown_seconds": 0.6,
+        "swipe_min_distance": 0.15,
+        "swipe_min_velocity": 0.4,
+        "pinch_distance_threshold": 0.045,
+        "mappings": {
+            "SWIPE_LEFT": "prev_window",
+            "SWIPE_RIGHT": "next_window",
+            "FIST": "minimize_window",
+            "TWO_FINGER": "activate_window_mode",
+            "PINCH": "click",
+            "OPEN_PALM": "neutral",
+            "THUMBS_UP": "confirm",
+            "THUMBS_DOWN": "cancel"
+        }
+    },
+    "cursor_control": {
+        "enabled": true,
+        "mirror_camera": true,
+        "sensitivity_x": 1.4,
+        "sensitivity_y": 1.4,
+        "dead_zone_px": 2.5,
+        "min_cutoff": 1.2,
+        "beta": 0.05,
+        "active_box": [
+            0.15,
+            0.85,
+            0.2,
+            0.8
+        ],
+        "drag_hold_threshold": 0.25,
+        "pinch_click_distance": 0.04
+    }
+}
